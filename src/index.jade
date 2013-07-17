@@ -1,0 +1,44 @@
+html(lang="en")
+  head
+    title= "Task Generator"
+
+    //- link(rel="stylesheet", href="css/vendor/bootstrap.css")
+    //- link(rel="stylesheet",href="css/app/global/layout.css")
+    link(rel="stylesheet",href="css/app/marketing/home.css")
+    link(rel="stylesheet",href="css/app/global/mygov_admin_tasks.css")
+
+  body
+    #container
+
+      h1.hero-title Task List Generator
+
+      #task-list-display
+
+        h2 Add task items
+
+        h3 Obtain a Driver's License
+
+        ul#mygov-task-list
+          li
+            span(class="task-item-name") Gather proof of citizenship, identity, and residence
+            span(class="edit-task-items")
+              a(href="#") Edit
+              a(href="#") Remove
+          li
+            span(class="task-item-name") Fill out the proper documents
+            span(class="edit-task-items")
+              a(href="#") Edit
+              a(href="#") Remove
+          li
+            span(class="task-item-name") Pre-apply online
+            span(class="edit-task-items")
+              a(href="#") Edit
+              a(href="#") Remove
+
+      form
+        input(type="text",class="add-task-item",value="Add another task item")
+        br
+        input(type="button",class="task-button",value="Add task")
+        &nbsp;&nbsp;
+        a(href='#') I'm done
+

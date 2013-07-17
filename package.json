@@ -1,0 +1,14 @@
+{
+  "name": "mygov-admin-task",
+  "author": "Raphy Villas",
+  "description": "Server for backbone app",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "1.8.x",
+    "express": "3.x",
+    "consolidate": "0.9.1 ",
+    "jade": "0.33.0"
+  },
+  "engine": "0.6.x",
+  "main": "server.js"
+}

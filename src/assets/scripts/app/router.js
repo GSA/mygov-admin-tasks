@@ -5,11 +5,11 @@ define([
     'views/marketing/home'
 ], function ($, _, Backbone, ProjectListView, HomeView) {
     'use strict';
-    
+
     var AppRouter = Backbone.Router.extend({
 
         // This is really just an API Manager, perhaps the name
-        // should be changed to reflect that.  
+        // should be changed to reflect that.
 
         routes: {
             // Expects #/api/...
@@ -20,7 +20,9 @@ define([
 
         home: function () {
             console.log("Initializing home view");
-            new HomeView();
+            console.log("*****!!!***");
+            var homeView = new HomeView();
+            homeView.render();
         }
     });
 
