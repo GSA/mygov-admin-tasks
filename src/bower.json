@@ -1,5 +1,5 @@
 {
-  "name": "App Name",
+  "name": "MyGov Tasks",
   "version": "0.0.0",
   "dependencies": {
     "requirejs": "latest",

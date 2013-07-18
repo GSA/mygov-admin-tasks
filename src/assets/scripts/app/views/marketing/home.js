@@ -1,8 +1,7 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-    'text!../../../../../templates/marketing/home.html'
+    'backbone'
 ], function ($, _, Backbone, homeTemplate) {
     'use strict';
 
@@ -11,15 +10,13 @@ define([
         el: $("#container"),
 
         template: '<h1>Temp home template view!!!!</h1>',
-        // template: _.template(homeTemplate),
 
         initialize: function () {
-
-            this.render();
+            console.log("****initializing homeview");
         },
 
         render: function () {
-            console.log("rendering homeview")
+            console.log("**** rendering homeview")
             this.$el.html(this.template).hide().fadeIn();
         }
 

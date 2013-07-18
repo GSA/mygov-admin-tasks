@@ -1321,13 +1321,12 @@ div.alert-box.blue {
 /*** Sticky footer http://www.cssstickyfooter.com ***/
 /* line 743, ../../app/assets/stylesheets/application.css.scss */
 body {
-  background: #f2f2f2 url(/assets/background.png) 50% 50% repeat;
+  background: #f2f2f2;
 }
 
 @media only screen and (min-width: 768px) {
   /* line 746, ../../app/assets/stylesheets/application.css.scss */
   body {
-    background-image: url(/assets/background.png);
     background-position: top center;
     background-repeat: repeat;
     background-attachment: fixed;

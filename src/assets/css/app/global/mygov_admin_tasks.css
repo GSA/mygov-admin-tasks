@@ -77,6 +77,10 @@ li span.task-item-name {
   width: 475px;
 }
 
+li span.edit-task-items {
+  /*display: none;*/
+}
+
 li span.edit-task-items a {
   font-size: 0.8em;
 }

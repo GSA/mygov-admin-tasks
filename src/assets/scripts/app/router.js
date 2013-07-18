@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/marketing/home'
-], function ($, _, Backbone, ProjectListView, HomeView) {
+    'views/createTaskList'
+], function ($, _, Backbone, taskListView) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
@@ -19,10 +19,8 @@ define([
         },
 
         home: function () {
-            console.log("Initializing home view");
-            console.log("*****!!!***");
-            var homeView = new HomeView();
-            homeView.render();
+            var createTaskList = new taskListView()
+            createTaskList.render();
         }
     });
 
