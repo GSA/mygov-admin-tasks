@@ -4,29 +4,29 @@ define([
     'backbone',
     'models/task',
     'models/taskItem',
-    'text!../templates/taskItem.ejs'
+    'text!../templates/taskItemTemplate.ejs'
 ], function ($, _, Backbone, Task, TaskItemModel, TaskItemTemplate) {
     'use strict';
 
     var TaskItemView = Backbone.View.extend({
 
       events: {
-        "mouseover li": "showEditTasks"
+        "mouseover li": "showEditTasks",
+        "click a.remove-task-item": "removeTask"
       },
 
-      el: "ul#mygov-task-list",
+      tagName: 'li',
 
-      initialize: function (data) {
-        this.model = new TaskItemModel(data);
+      initialize: function (model) {
+        this.model = model;
       },
 
       template: _.template(TaskItemTemplate),
 
       render: function () {
-        var taskItem = this.model.toJSON();
-        var html = this.template(taskItem)
+        var html = this.template(this.model.toJSON());
 
-        $(this.el).append(html).hide().fadeIn();
+        $("ul#mygov-task-list").append($(this.el).append(html)).hide().fadeIn();
         this.resetForm();
       },
 
@@ -40,7 +40,14 @@ define([
 
       resetForm: function() {
         $('input.add-task-item').val("Add another task item");
+      },
+
+      removeTask: function(e) {
+        e.preventDefault();
+        this.model.destroy();
+        this.remove();
       }
+
 
     });
 
