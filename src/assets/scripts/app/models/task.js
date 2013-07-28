@@ -10,7 +10,12 @@ define([
     initialize: function () {
     },
 
-    url: 'http://localhost:57910/api/v1/tasks' //TODO: domain to config
+    url: 'http://localhost:57910/api/v1/tasks', //TODO: domain to config
+
+    parse: function(response){
+      return response.task;
+    }
+
 
   });
 

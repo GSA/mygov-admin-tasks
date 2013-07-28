@@ -72,6 +72,15 @@ input.add-task-item, input.add-task-title, input.add-task-description {
   border-radius: 3px;
 }
 
+span.task-edit input {
+  background: none;
+  font-weight: normal;
+  font-style: italic;
+  border: none;
+  border-bottom: 1px solid #999;
+  font-size: 1.25em;
+}
+
 input.task-button {
   font-size: 1.5em;
 }
@@ -82,10 +91,10 @@ li span.task-item-name {
 }
 
 li span.edit-task-items {
-  /*display: none;*/
+  display: none;
 }
 
-li span.edit-task-items a {
+li span.task-details a, li span.task-edit {
   font-size: 0.8em;
 }
 
@@ -151,4 +160,12 @@ span.edit-task-items a {
 
 #save-tasks-form, h3.task-title-display {
   display: none;
+}
+
+span.task-edit {
+  display: none;
+}
+
+span.task-wrapper {
+  display:block;
 }

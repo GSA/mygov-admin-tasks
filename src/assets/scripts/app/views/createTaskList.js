@@ -33,7 +33,7 @@ define([
       template: _.template(TaskListTemplate, {}),
 
       render: function () {
-          $(this.el).html(this.template).hide().fadeIn();
+          $(this.el).html(this.template).hide().fadeIn(300, function(){ $("input.add-task-title").select(); });
       },
 
       addTaskItem: function(e){
@@ -81,8 +81,6 @@ define([
 
       saveTask: function(e) {
         e.preventDefault();
-        console.log("*** tasks attributes: ", this.baseTaskModel.attributes);
-        console.log("*** saving tasks: ", this.collection.models);
         var that = this;
         this.baseTaskModel.save(this.baseTaskModel.attributes, {
           success:function(task, response){
@@ -109,12 +107,16 @@ define([
       },
 
       saveTaskItems: function(task, taskItems) {
-        console.log("attempting to save items: ", taskItems);
+        console.log("task attributes1: ", task.attributes);
         _.each(taskItems.models, function(item){
           var taskAttributes = $.extend(item.attributes, { 'task_id': task.id });
+          console.log("task attributes2: ", taskAttributes);
           item.save(taskAttributes, {
             success: function(){
               //TODO: Invoke flash message
+            },
+            error: function(){
+              console.log("**** failure ***");
             }
           });
         });

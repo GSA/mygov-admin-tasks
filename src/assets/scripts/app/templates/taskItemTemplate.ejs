@@ -1,5 +1,16 @@
-<span class='task-item-name'><%= name %></span>
-<span class='edit-task-items'>
-  <a href="#" class="edit-task-item">Edit</a>
-  <a href="#" class="remove-task-item">Remove</a>
+<span class='task-wrapper'>
+  <span class='task-details'>
+    <span class='task-item-name'><%= name %></span>
+    <span class='edit-task-items'>
+      <a href='#' class='edit-task-item'>Edit</a>
+      <a href='#' class='remove-task-item'>Remove</a>
+    </span>
+  </span>
+
+  <span class='task-edit'>
+    <input type='text' value='' size=50>
+
+    <a href='#' class='mygov-button save-edit-task-item'>I'm done editing</a>&nbsp;&nbsp;
+    <a href='#' class='cancel-edit-task-item'>Cancel</a>
+  </span>
 </span>
