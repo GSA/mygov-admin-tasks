@@ -7,7 +7,7 @@ define([
 
   var TaskItem = Backbone.Model.extend({
 
-    url: 'http://localhost:1234/api/v1/task_items' //TODO: domain to config
+    url: 'http://localhost:57910/api/v1/task_items' //TODO: domain to config
 
   });
 
