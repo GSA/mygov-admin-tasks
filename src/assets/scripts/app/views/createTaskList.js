@@ -6,8 +6,9 @@ define([
     'models/taskItem',
     'collections/taskItems',
     'text!../templates/taskList.ejs',
-    'views/taskItem'
-], function ($, _, Backbone, TaskModel, TaskItemModel, TaskItemsCollection, TaskListTemplate, TaskItemView) {
+    'views/taskItem',
+    'views/saveTaskListSuccess'
+], function ($, _, Backbone, TaskModel, TaskItemModel, TaskItemsCollection, TaskListTemplate, TaskItemView, SaveSuccessView) {
     'use strict';
 
     var CreateTaskListView = Backbone.View.extend({
@@ -26,14 +27,14 @@ define([
       el: "#container",
 
       initialize: function () {
-        _.bindAll(this, 'saveTask', 'saveBasicTaskInfo');
+        _.bindAll(this, 'saveTask', 'saveBasicTaskInfo', 'saveTaskItems');
         this.collection = new TaskItemsCollection();
       },
 
       template: _.template(TaskListTemplate, {}),
 
       render: function () {
-          $(this.el).html(this.template).hide().fadeIn(300, function(){ $("input.add-task-title").select(); });
+        $(this.el).html(this.template).hide().fadeIn(300, function(){ $("input.add-task-title").select(); });
       },
 
       addTaskItem: function(e){
@@ -41,11 +42,9 @@ define([
           e.preventDefault();
         }
 
-        //Create a TaskItem model and add it to the collection of TaskItems
         var taskItem = new TaskItemModel({name: $('input.add-task-item').val() });
         this.collection.add(taskItem);
 
-        //Add a task item to the current task
         var taskItemView = new TaskItemView(taskItem);
         taskItemView.render();
         $('input.add-task-item').blur();
@@ -84,9 +83,10 @@ define([
         var that = this;
         this.baseTaskModel.save(this.baseTaskModel.attributes, {
           success:function(task, response){
-            console.log("response: ", response);
-            console.log("task: ", task);
             that.saveTaskItems(task, that.collection);
+          },
+          error: function(){
+            console.log("Error saving the task"); //TODO: Display error message
           }
         });
 
@@ -106,20 +106,45 @@ define([
         $('#add-tasks-form').toggle()
       },
 
-      saveTaskItems: function(task, taskItems) {
-        console.log("task attributes1: ", task.attributes);
+      saveTaskItems: function(task,taskItems) {
+        var that = this;
+        var errors = [];
+        var taskCount = 0;
+
         _.each(taskItems.models, function(item){
           var taskAttributes = $.extend(item.attributes, { 'task_id': task.id });
-          console.log("task attributes2: ", taskAttributes);
           item.save(taskAttributes, {
             success: function(){
-              //TODO: Invoke flash message
+              // TODO: de-yuckify. Maybe use promises
+              taskCount++;
+              if (taskCount == taskItems.models.length) {
+                that.displaySaveSuccess(task,taskItems);
+              };
             },
-            error: function(){
-              console.log("**** failure ***");
+            error: function(model,response){
+              var returnedErrors = $.parseJSON(response.responseText).errors;
+
+              //TODO: Separate into a utility
+              for(var k in returnedErrors){
+                if(returnedErrors.hasOwnProperty(k)){
+                  errors.push(k + ": " + returnedErrors[k]);
+                }
+              }
+
+              that.displaySaveError(errors);
             }
           });
+
         });
+      },
+
+      displaySaveError: function(errors){
+        console.log("Failed to save tasks. Errors: ", errors);
+      },
+
+      displaySaveSuccess: function(task,task_items){
+        var successView = new SaveSuccessView(task,task_items);
+        successView.render();
       }
 
     });

@@ -2,7 +2,8 @@ require.config({
     paths: {
         'jquery': '../vendor/jquery/jquery',
         'underscore': '../vendor/underscore-amd/underscore',
-        'backbone': '../vendor/backbone-amd/backbone'
+        'backbone': '../vendor/backbone-amd/backbone',
+        'config': './config'
     }
 });
 

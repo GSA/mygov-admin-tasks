@@ -39,11 +39,11 @@ h3 {
   margin-bottom: 10px;
 }
 
-ul {
+ul#mygov-task-list {
   padding-left:0 ;
 }
 
-ul li {
+ul#mygov-task-list li {
   border-radius: 5px;
   list-style: none;
   line-height: 1.5em;
@@ -52,7 +52,7 @@ ul li {
   background-color: #f7f7f7;
 }
 
-ul li:hover {
+ul#mygov-task-list li:hover {
   background-color: #e8f8c0;
   color: #50593b;
 }

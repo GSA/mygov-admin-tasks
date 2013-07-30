@@ -1,0 +1,14 @@
+<h1>Task List Generator</h1>
+
+<div id='task-list-display'>
+
+  <h2 class="task-step-instructions">Your task list has been created!</h2>
+
+
+  <strong><%= taskList['name'] %></strong>
+
+  <% _.each(taskItems, function(taskItem){%>
+    <ul><li><%= taskItem['name'] %></li></ul>
+  <% }); %>
+
+</div>

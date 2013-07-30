@@ -1,0 +1,9 @@
+// Example file
+{
+  "host": "http://localhost",
+  "port": "5710"
+}
+
+// {
+//   "host": "http://ec2.someurl.amazon.com"
+// }
