@@ -2,7 +2,7 @@
   "name": "mygov-admin-task",
   "author": "Raphy Villas",
   "description": "Server for backbone app",
-  "version": "0.0.1",
+  "version": "0.0.1-4",
   "dependencies": {
     "connect": "1.8.x",
     "express": "3.x",
@@ -10,8 +10,16 @@
     "jade": "0.33.0"
   },
   "scripts": {
-    "start": "node server.js env=development"
+    "start": "node server.js"
   },
   "engine": "0.6.x",
-  "main": "server.js"
+  "main": "server.js",
+  "subdomain": "mygov-admin-task",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GSA-OCSIT/mygov-admin-tasks"
+  },
+  "engines": {
+    "node": "0.6.x"
+  }
 }
