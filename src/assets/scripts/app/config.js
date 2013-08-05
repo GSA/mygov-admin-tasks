@@ -2,7 +2,7 @@ define([], function () {
   'use strict';
 
   var configs = {
-    'development': {
+    'uat': {
       'api': 'http://ec2-184-73-26-235.compute-1.amazonaws.com'
     },
     'production': {

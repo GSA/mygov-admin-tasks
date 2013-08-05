@@ -12,11 +12,7 @@ app.get('/', function(req, res){
 });
 
 var getEnvironment = function(){
-  if(process.argv[2]) {
-    return process.argv[2].split("=")[1];
-  } else {
-    return "local";
-  }
+  return process.env.NODE_ENV || "local";
 };
 
 app.locals({
