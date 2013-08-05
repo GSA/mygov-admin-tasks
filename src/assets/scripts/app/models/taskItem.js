@@ -1,21 +1,18 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
-], function ($, _, Backbone) {
+  'backbone',
+  'config'
+], function ($, _, Backbone, Config) {
   'use strict';
 
-  var configs = {
-    'api': 'http://localhost:57910'
-  }
+  var environment = document.querySelector('#environment'),
+              data = environment.dataset;
 
   var TaskItem = Backbone.Model.extend({
 
-// <<<<<<< Updated upstream
-//     url: 'http://localhost:57910/api/v1/task_items', //TODO: domain to config
-// =======
     url: function(){
-      return configs.api + "/api/v1/task_items";
+      return Config[data.type].api + "/api/v1/task_items";
     }
 
   });
