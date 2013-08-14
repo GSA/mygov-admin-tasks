@@ -21,15 +21,12 @@ var showAllTasks = Backbone.View.extend({
 
     this.collection.fetch({
       success: function(collection, response){
-        console.log("collection: ", collection);
         $(_this.el).html(_.template(ListAllTasksTemplate, {tasks: collection.models}));
 
         _.each(collection.models, function(task){
           var basicTaskView = new BasicTaskItemView({collection: collection, model: task});
           basicTaskView.render();
         });
-
-
 
       },
       error: function(){

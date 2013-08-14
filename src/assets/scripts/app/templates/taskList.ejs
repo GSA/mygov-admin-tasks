@@ -18,14 +18,25 @@
 
   </div>
 
+<div id="add-tasks-form">
+  <input type="text" class="add-task-item" value="Add another task item">
+  <textarea class="add-task-item-description" rows="4" cols="50" value="Write a description">Please write a description</textarea>
+  <br/>
 
-  <div id="add-tasks-form">
-    <input type="text" class="add-task-item" value="Add another task item">
-    <br/>
-    <a class='mygov-button add-task-item' href='#'>Add to my task list</a>
-    &nbsp;&nbsp;
-    <a href='#' class="add-completed">I'm done</a>
+  <div id="add-link">
+    <label><input type="checkbox" class="add-task-item-link">Add a link</label><br/>
+    <div id="add-task-item-link-form">
+      <table>
+        <tr><td>Link Name:</td><td><input type="text" class="add-task-item-link-name"></td></tr>
+        <tr><td>Link URL:</td><td><input type="text" class="add-task-item-link-url"></td></tr>
+      </table>
+    </div>
   </div>
+
+  <a class='mygov-button add-task-item' href='#'>Add to my task list</a>
+  &nbsp;&nbsp;
+  <a href='#' class="add-completed">I'm done adding tasks</a>
+</div>
 
   <div id="save-tasks-form">
     <a class='mygov-button save-all-tasks' href='#'>I'm finished! Save my task list</a>

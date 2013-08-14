@@ -61,6 +61,31 @@ ul#mygov-task-list li:hover {
   display: none;
 }
 
+#add-tasks-form textarea {
+  font-weight: normal;
+  background-color: #fff;
+}
+
+#add-link {
+  font-size: .75em;
+}
+
+#add-task-item-link-form {
+  display: none;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+#add-task-item-link-form table {
+  min-width: 100px;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+#add-task-item-link-form input {
+  font-weight: normal;
+}
+
 input.add-task-item, input.add-task-title, input.add-task-description {
   padding-left: 7px;
   margin-bottom: 7px;
@@ -70,6 +95,10 @@ input.add-task-item, input.add-task-title, input.add-task-description {
   font-weight: normal;
   color: a1a3a6;
   border-radius: 3px;
+}
+
+a.add-task-item {
+  margin-top: 15px;
 }
 
 span.task-edit input {
@@ -90,8 +119,8 @@ li span.task-item-name {
   width: 475px;
 }
 
-li span.edit-task-items {
-  display: none;
+li span.edit-task-items.inactive a{
+  color: #ccc;
 }
 
 li span.task-details a, li span.task-edit {
