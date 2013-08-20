@@ -6,9 +6,24 @@ define([
     'models/taskItem',
     'collections/taskItems',
     'text!../templates/taskList.ejs',
+    'text!../templates/mainNavTemplate.ejs',
     'views/taskItem',
-    'views/saveTaskListSuccess'
-], function ($, _, Backbone, TaskModel, TaskItemModel, TaskItemsCollection, TaskListTemplate, TaskItemView, SaveSuccessView) {
+    'views/saveTaskListSuccess',
+    'views/listAllTasks'
+
+], function (
+  $
+  , _
+  , Backbone
+  , TaskModel
+  , TaskItemModel
+  , TaskItemsCollection
+  , TaskListTemplate
+  , MainNavTemplate
+  , TaskItemView
+  , SaveSuccessView
+  , ListAllTasks
+  ) {
     'use strict';
 
     var CreateTaskListView = Backbone.View.extend({
@@ -21,7 +36,10 @@ define([
         "click a.add-completed": "toggleFormButtons",
         "click a.add-more-tasks": "toggleFormButtons",
         "click a.save-all-tasks": "saveTask",
-        'click a.add-task-title': "saveBasicTaskInfo"
+        "click a.add-task-title": "saveBasicTaskInfo",
+
+        "click #main-nav a[name=view-all-tasks]": "listAllTasks",
+        "click #main-nav a[name=create-new-task-list]": "createNewTaskList"
       },
 
       el: "#container",
@@ -32,9 +50,11 @@ define([
       },
 
       template: _.template(TaskListTemplate, {}),
+      mainNavTemplate: _.template(MainNavTemplate),
 
       render: function () {
         $(this.el).html(this.template).hide().fadeIn(300, function(){ $("input.add-task-title").select(); });
+        this.renderNavigation();
       },
 
       addTaskItem: function(e){
@@ -145,6 +165,24 @@ define([
       displaySaveSuccess: function(task,task_items){
         var successView = new SaveSuccessView(task,task_items);
         successView.render();
+      },
+
+      renderNavigation: function(){
+        $("#main-nav").append(this.mainNavTemplate);
+      },
+
+      listAllTasks: function(e){
+        e.preventDefault();
+
+        var listAllTasksView = new ListAllTasks();
+        listAllTasksView.render();
+      },
+
+      createNewTaskList: function(e){
+        e.preventDefault();
+        this.render();
+        // var createTaskList = new TaskListView();
+        // createTaskList.render();
       }
 
     });
