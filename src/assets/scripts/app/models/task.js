@@ -14,10 +14,6 @@ define([
     initialize: function () {
     },
 
-    // url: function() {
-    //   return Config[data.type].api + "/api/v1/tasks";
-    // },
-
     urlRoot: function() {
       return Config[data.type].api + "/api/v1/tasks";
     },

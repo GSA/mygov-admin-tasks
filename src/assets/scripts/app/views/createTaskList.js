@@ -181,8 +181,6 @@ define([
       createNewTaskList: function(e){
         e.preventDefault();
         this.render();
-        // var createTaskList = new TaskListView();
-        // createTaskList.render();
       }
 
     });

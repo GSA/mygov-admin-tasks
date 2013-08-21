@@ -31,8 +31,6 @@ define([
         var _this = this;
         var thisModel = this.collection.get(this.model.id);
 
-        // this.collection.remove(thisModel);
-
         this.model.destroy({
           success: function(){
             //TODO: Display messaging
@@ -56,7 +54,7 @@ define([
       },
 
       toggleTasks: function(e) {
-        e.preventDefault(); //TODO: DRY this up
+        e.preventDefault();
         var taskDetails = $(this.el).find('.task-details')
         taskDetails.toggle();
 
