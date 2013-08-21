@@ -16,15 +16,11 @@ define([
         "click a.edit-task-item": "editTask",
         "click a.cancel-edit-task-item": "toggleTasks",
         "click a.save-edit-task-item": "saveEditedTask",
-        "hover span.task-wrapper": "doSomething"
+        "hover span.task-wrapper": "activateUtilityLinks"
 
       },
 
       tagName: 'li',
-
-      initialize: function (model) {
-        this.model = model;
-      },
 
       template: _.template(TaskItemTemplate),
 
@@ -44,6 +40,14 @@ define([
 
       resetForm: function() {
         $('input.add-task-item').val("Add another task item");
+        $('textarea.add-task-item-description').val("Add a task item description");
+        $('input.add-task-item-link-name').val("");
+        $('input.add-task-item-link-url').val("");
+
+        if($('input.add-task-item-link').prop('checked') == true ){
+          $('input.add-task-item-link').prop('checked',false)
+          $('#add-task-item-link-form').toggle();
+        };
       },
 
       removeTask: function(e) {
@@ -66,7 +70,7 @@ define([
       },
 
       toggleTasks: function(e) {
-        e.preventDefault(); //TODO: DRY this up
+        e.preventDefault();
         var taskDetails = $(this.el).find('.task-details')
         taskDetails.toggle();
 
@@ -75,7 +79,7 @@ define([
       },
 
       saveEditedTask: function(e) {
-        e.preventDefault(); //TODO: DRY this up
+        e.preventDefault();
         var taskEditElement = $(this.el).find('.task-edit')
         var newValue = taskEditElement.find('input').val();
         var taskDetails = $(this.el).find('.task-details .task-item-name').html(newValue);
@@ -84,8 +88,8 @@ define([
         this.toggleTasks(e);
       },
 
-      doSomething: function(){
-        $(this.el).find('span.edit-task-items').toggle();
+      activateUtilityLinks: function(){
+        $(this.el).find('span.edit-task-items').toggleClass('inactive');
       }
 
 
