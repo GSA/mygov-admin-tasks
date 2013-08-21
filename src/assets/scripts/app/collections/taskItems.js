@@ -9,9 +9,6 @@ define([
 
   var TaskItemsCollection = Backbone.Collection.extend({
 
-    initialize: function () {
-    },
-
     model: TaskItemModel
 
   });

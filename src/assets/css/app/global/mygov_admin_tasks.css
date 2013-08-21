@@ -169,3 +169,7 @@ span.task-edit {
 span.task-wrapper {
   display:block;
 }
+
+#basic-task-item-details {
+  display:none;
+}
