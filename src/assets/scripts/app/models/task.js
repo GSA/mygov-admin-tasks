@@ -14,7 +14,7 @@ define([
     initialize: function () {
     },
 
-    url: function() {
+    urlRoot: function() {
       return Config[data.type].api + "/api/v1/tasks";
     },
 

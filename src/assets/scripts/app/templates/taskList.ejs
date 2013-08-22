@@ -1,33 +1,37 @@
 <h1>Task List Generator</h1>
 
-<div id='task-list-display'>
+<div id="main-content">
+  <div id='task-list-display'>
 
-  <h2 class="task-step-instructions">Step 1: Enter basic task information</h2>
+    <h2 class="task-step-instructions">Step 1: Enter basic task information</h2>
 
-  <div id="add-task-info-form">
-    <input type="text" class="add-task-title" value="Enter a task title">
-    <br/>
-    <input type="text" class="add-task-description" value="Enter a task description">
-    <br/>
-    <a class='mygov-button add-task-title' href='#'>Get started</a>
+    <div id="add-task-info-form">
+      <input type="text" class="add-task-title" value="Enter a task title">
+      <br/>
+      <input type="text" class="add-task-description" value="Enter a task description">
+      <br/>
+      <a class='mygov-button add-task-title' href='#'>Get started</a>
+    </div>
+
+    <ul id='mygov-task-list'>
+    </ul>
+
   </div>
 
-  <ul id='mygov-task-list'>
-  </ul>
 
+  <div id="add-tasks-form">
+    <input type="text" class="add-task-item" value="Add another task item">
+    <br/>
+    <a class='mygov-button add-task-item' href='#'>Add to my task list</a>
+    &nbsp;&nbsp;
+    <a href='#' class="add-completed">I'm done</a>
+  </div>
+
+  <div id="save-tasks-form">
+    <a class='mygov-button save-all-tasks' href='#'>I'm finished! Save my task list</a>
+    &nbsp;&nbsp;
+    <a href='#' class="add-more-tasks">Add more</a>
+  </div>
 </div>
 
-
-<div id="add-tasks-form">
-  <input type="text" class="add-task-item" value="Add another task item">
-  <br/>
-  <a class='mygov-button add-task-item' href='#'>Add to my task list</a>
-  &nbsp;&nbsp;
-  <a href='#' class="add-completed">I'm done</a>
-</div>
-
-<div id="save-tasks-form">
-  <a class='mygov-button save-all-tasks' href='#'>I'm finished! Save my task list</a>
-  &nbsp;&nbsp;
-  <a href='#' class="add-more-tasks">Add more</a>
-</div>
+<div id="main-nav"></div>

@@ -13,15 +13,14 @@ define([
 
         routes: {
             // Expects #/api/...
-            'api/home': 'home',
-            'api/projects': 'listProjects',
-            '*actions': 'defaultAction'
+            'api/home': 'home'
         },
 
         home: function () {
             var createTaskList = new taskListView()
             createTaskList.render();
         }
+
     });
 
     var initialize = function () {
