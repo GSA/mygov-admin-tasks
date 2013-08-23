@@ -37,6 +37,7 @@ define([
         "click a.add-more-tasks": "toggleFormButtons",
         "click a.save-all-tasks": "saveTask",
         "click a.add-task-title": "saveBasicTaskInfo",
+        'click input.add-task-item-link': "toggleLinks",
 
         "click #main-nav a[name=view-all-tasks]": "listAllTasks",
         "click #main-nav a[name=create-new-task-list]": "createNewTaskList"
@@ -62,12 +63,28 @@ define([
           e.preventDefault();
         }
 
-        var taskItem = new TaskItemModel({name: $('input.add-task-item').val() });
+        var taskItem = new TaskItemModel({
+          name: $('input.add-task-item').val(),
+          description: $('textarea.add-task-item-description').val(),
+        });
+
+        this.addLinksFor(taskItem);
         this.collection.add(taskItem);
 
-        var taskItemView = new TaskItemView(taskItem);
+        var taskItemView = new TaskItemView({model: taskItem});
         taskItemView.render();
         $('input.add-task-item').blur();
+      },
+
+      addLinksFor: function(taskItem){
+        if($('input.add-task-item-link').prop('checked')) {
+          var _links = []
+          _links.push({
+            name: $('.add-task-item-link-name').val(),
+            url: $('.add-task-item-link-url').val()
+          });
+        taskItem.set('links', _links);
+        }
       },
 
       handleFormFocus: function(){
@@ -133,6 +150,7 @@ define([
 
         _.each(taskItems.models, function(item){
           var taskAttributes = $.extend(item.attributes, { 'task_id': task.id });
+
           item.save(taskAttributes, {
             success: function(){
               // TODO: de-yuckify. Maybe use promises
@@ -181,6 +199,10 @@ define([
       createNewTaskList: function(e){
         e.preventDefault();
         this.render();
+      },
+
+      toggleLinks: function(){
+        $('#add-task-item-link-form').toggle();
       }
 
     });
