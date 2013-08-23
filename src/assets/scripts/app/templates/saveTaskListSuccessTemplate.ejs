@@ -8,7 +8,18 @@
   <strong><%= taskList['name'] %></strong>
 
   <% _.each(taskItems, function(taskItem){%>
-    <ul><li><%= taskItem['name'] %></li></ul>
+    <ul>
+      <li>
+        <%= taskItem['name'] %><br/>
+        <%= taskItem['description'] %>
+
+        <% if (taskItem['links'].length > 0) { %>
+          <% _.each(taskItem['links'], function(link) { %>
+            <br/><a href="<%= link['url'] %>"><%= link['name'] %></a>
+          <% }); %>
+        <% } %>
+      </li>
+    </ul>
   <% }); %>
 
 </div>
