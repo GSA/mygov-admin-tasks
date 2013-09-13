@@ -13,8 +13,8 @@
         <%= taskItem['name'] %><br/>
         <%= taskItem['description'] %>
 
-        <% if (taskItem['links'].length > 0) { %>
-          <% _.each(taskItem['links'], function(link) { %>
+        <% if (taskItem['links_attributes'] && taskItem['links_attributes'].length > 0) { %>
+          <% _.each(taskItem['links_attributes'], function(link) { %>
             <br/><a href="<%= link['url'] %>"><%= link['name'] %></a>
           <% }); %>
         <% } %>

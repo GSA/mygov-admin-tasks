@@ -46,7 +46,7 @@ define([
       el: "#container",
 
       initialize: function () {
-        _.bindAll(this, 'saveTask', 'saveBasicTaskInfo', 'saveTaskItems');
+        _.bindAll(this, 'saveTask', 'saveBasicTaskInfo');
         this.collection = new TaskItemsCollection();
       },
 
@@ -83,7 +83,7 @@ define([
             name: $('.add-task-item-link-name').val(),
             url: $('.add-task-item-link-url').val()
           });
-        taskItem.set('links', _links);
+        taskItem.set('links_attributes', _links);
         }
       },
 
@@ -117,13 +117,30 @@ define([
 
       saveTask: function(e) {
         e.preventDefault();
-        var that = this;
+        var taskItems = _.map(this.collection.models, function(t){
+          return t.attributes;
+        });
+
+        this.baseTaskModel.set('task_items_attributes', taskItems);
+        var _this = this;
         this.baseTaskModel.save(this.baseTaskModel.attributes, {
+
           success:function(task, response){
-            that.saveTaskItems(task, that.collection);
+            _this.displaySaveSuccess(task, _this.collection);
+            console.log(task);
           },
-          error: function(){
-            console.log("Error saving the task"); //TODO: Display error message
+
+          error: function(model, response){
+            var errors = []
+            var returnedErrors = $.parseJSON(response.responseText).errors;
+
+            for(var k in returnedErrors){
+              if(returnedErrors.hasOwnProperty(k)){
+                errors.push(k + ": " + returnedErrors[k]);
+              }
+            }
+
+            _this.displaySaveError(errors);
           }
         });
 
@@ -143,41 +160,8 @@ define([
         $('#add-tasks-form').toggle()
       },
 
-      saveTaskItems: function(task,taskItems) {
-        var that = this;
-        var errors = [];
-        var taskCount = 0;
-
-        _.each(taskItems.models, function(item){
-          var taskAttributes = $.extend(item.attributes, { 'task_id': task.id });
-
-          item.save(taskAttributes, {
-            success: function(){
-              // TODO: de-yuckify. Maybe use promises
-              taskCount++;
-              if (taskCount == taskItems.models.length) {
-                that.displaySaveSuccess(task,taskItems);
-              };
-            },
-            error: function(model,response){
-              var returnedErrors = $.parseJSON(response.responseText).errors;
-
-              //TODO: Separate into a utility
-              for(var k in returnedErrors){
-                if(returnedErrors.hasOwnProperty(k)){
-                  errors.push(k + ": " + returnedErrors[k]);
-                }
-              }
-
-              that.displaySaveError(errors);
-            }
-          });
-
-        });
-      },
-
       displaySaveError: function(errors){
-        console.log("Failed to save tasks. Errors: ", errors);
+        $("#flash_message").html("<span class='error'>Something went wrong. Here are the errors: <br/>" + errors + "</span>");
       },
 
       displaySaveSuccess: function(task,task_items){

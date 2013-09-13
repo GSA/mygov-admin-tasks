@@ -11,15 +11,17 @@ define([
 
   var Task = Backbone.Model.extend({
 
-    initialize: function () {
-    },
-
     urlRoot: function() {
       return Config[data.type].api + "/api/v1/tasks";
     },
 
     parse: function(response){
       return response.task;
+    },
+
+    toJSON: function() {
+      var json = { task: this.attributes };
+      return json;
     }
   });
 
