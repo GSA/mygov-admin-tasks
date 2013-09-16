@@ -13,12 +13,7 @@ define([
 
     url: function(){
       return Config[data.type].api + "/api/v1/task_items";
-    },
-
-    defaults: {
-      links: []
     }
-
   });
 
   return TaskItem;
