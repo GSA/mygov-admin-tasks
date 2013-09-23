@@ -22,7 +22,7 @@ define([
       template: _.template(BasicTaskItemTemplate),
 
       render: function () {
-        var html = this.template(this.model.toJSON()); //CURRENT -- should this be a modeL?
+        var html = this.template(this.model.toJSON());
         $("ul#mygov-task-list").append($(this.el).append(html)).find('li:last').hide().fadeIn();
       },
 

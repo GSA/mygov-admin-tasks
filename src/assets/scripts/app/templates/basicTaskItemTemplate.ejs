@@ -1,11 +1,11 @@
 <span class='task-wrapper'>
   <span class='task-details'>
-    <span class='task-item-name'><%= name %></span>
+    <span class='task-item-name'><%= task.name %></span>
       <a href='#' class='view-task-item-details'>View</a>
       <a href='#' class='remove-task-item'>Remove</a>
 
       <div id="basic-task-item-details">
-        <% _.each(task_items, function(taskItem){%>
+        <% _.each(task.task_items, function(taskItem){%>
         &nbsp;&nbsp;&nbsp;<%= taskItem['task_item']['name'] %><br/>
         <% }); %>
       </div>
