@@ -202,3 +202,14 @@ span.task-wrapper {
 #basic-task-item-details {
   display:none;
 }
+
+#flash_message .error{
+  border:2px solid #E64848;
+  background-color: #FFDFDF;
+  margin:3px 0;
+  color: #222;
+  display: block;
+  padding: 8px 12px;
+}
+
+
